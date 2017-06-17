@@ -12,41 +12,65 @@ public class CompararUnsortedxListado {
 	
 	public static void leer()
     {
-        File archivo = null;
+        File archivoUnsorted = null;
+        File archivoOriginal = null;
         FileReader fr = null;
         BufferedReader br = null;
  
         try {
 			// Apertura del fichero y creacion de BufferedReader para poder
 			// hacer una lectura comoda (disponer del metodo readLine()).
-			archivo = new File ("C:/Users/ALVARO/Desktop/listaUnsorted.txt");
-			String listadoAlumnos = "";
-			fr = new FileReader (archivo);
+			archivoUnsorted = new File ("C:/Users/ALVARO/Desktop/listaUnsorted.txt");
+			archivoOriginal = new File ("C:/Users/ALVARO/Desktop/listadoCompleto.txt");
+			String listadoAlumnosUnsorted = "";
+			String listadoAlumnosNombre = "";
+			fr = new FileReader (archivoUnsorted);
 			br = new BufferedReader(fr);
  
 			// Lectura del fichero
 			System.out.println("Leyendo el contendio del archivo.txt");
 			String linea;
-			List<String> nombres = new ArrayList<String>();
+			List<String> nombresUnsorted = new ArrayList<String>();
 			//Llenar el list de nombres
 			while((linea=br.readLine())!=null){
-				nombres.add(linea);
+				nombresUnsorted.add(linea);
 				//System.out.println(linea);
 			}
+			fr = new FileReader(archivoOriginal);
+			br = new BufferedReader(fr);
+			List<String> listaLineasOriginal = new ArrayList<String>();
+			while((linea=br.readLine())!=null){
+				listaLineasOriginal.add(linea);
+			}
+			
+			System.out.println("***Listado Unsorted*****");
+			for(int i=0;i<nombresUnsorted.size();i++){
+				System.out.println("String "+i+": "+nombresUnsorted.get(i).toUpperCase());
+			}
+			
+			System.out.println("***Listado Original*****");
+			String nombreAlumno="";
+			String nombreProfesor="";
+			String nombreClase="";
+			for(int i=0;i<listaLineasOriginal.size();i++){
+				System.out.println("String "+i+": "+listaLineasOriginal.get(i).toUpperCase());
+			}
+			
+			
 			//recorremos listnombres
-			for(int i=0;i<nombres.size();i++){
-				System.out.println("String "+i+": "+nombres.get(i).toUpperCase());
-				String nombreUnsorted = nombres.get(i).toUpperCase();
-				for(int j=0;j<listadoAlumnos.length()-1;j++){
-					
+//			for(int i=0;i<nombresUnsorted.size();i++){
+//				System.out.println("String "+i+": "+nombresUnsorted.get(i).toUpperCase());
+//				String nombreUnsorted = nombresUnsorted.get(i).toUpperCase();
+//				for(int j=0;j<listadoAlumnosUnsorted.length()-1;j++){
+//					
 //					if(nombreUnsorted.equalsIgnoreCase(nomAlumno)){
 //						
 //					}
-				}
-				
-			}
+//				}
+//				
+//			}
         }
-        catch(Exception e){
+        catch(IOException e){
            e.printStackTrace();
         }finally{
            // En el finally cerramos el fichero, para asegurarnos
